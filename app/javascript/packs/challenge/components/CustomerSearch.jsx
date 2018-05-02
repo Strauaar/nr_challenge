@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 class CustomerSearch extends Component {
     static propTypes = {
-        setCustomer: PropTypes.func.isRequired
+        setParam: PropTypes.func.isRequired
     }
 
     static defaultProps = {
-        customer: ''
+        customer: undefined
     }
 
     constructor(props){
@@ -16,7 +16,8 @@ class CustomerSearch extends Component {
     }
 
     handleChange(e){
-        this.props.setCustomer(e.currentTarget.value)
+        let value = e.currentTarget.value === '' ? undefined : e.currentTarget.value
+        this.props.setParam('customer', value)
     }
 
     render(){

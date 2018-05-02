@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 
 class CompanyDropdown extends Component {
     static propTypes = {
-        setCompany: PropTypes.func.isRequired
+        setParam: PropTypes.func.isRequired
     }
 
     static defaultProps = {
-        company: 'All companies'
+        company: undefined
     }
 
     constructor(props){
         super(props)
-        this.toggleDropdown = this.toggleDropdown.bind(this)
         this.handleSelect = this.handleSelect.bind(this)
         this.state = { companies: [] }
     }
@@ -25,11 +24,8 @@ class CompanyDropdown extends Component {
     }
 
     handleSelect(e){
-        this.props.setCompany(e.target.value)
-    }
-
-    toggleDropdown(){
-        this.setState({displayDropdown: !this.state.displayDropdown})
+        let value = e.target.value === 'all' ? undefined : e.target.value
+        this.props.setParam('company', value)
     }
 
     renderCompanyList(){

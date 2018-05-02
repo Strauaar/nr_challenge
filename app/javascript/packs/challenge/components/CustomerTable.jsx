@@ -4,11 +4,11 @@ import CustomerTableRow from './CustomerTableRow';
 
 class CustomerTable extends Component {
     static propTypes = {
-        setFilter: PropTypes.func.isRequired
+        setParam: PropTypes.func.isRequired
     }
 
     static defaultProps = {
-        selected: 'Select'
+        selected: undefined
     }
 
     constructor(props){
@@ -18,7 +18,8 @@ class CustomerTable extends Component {
     }
 
     handleSelect(e){
-        this.props.setFilter(e.target.value)
+        let value = e.target.value === 'default'  ? undefined : e.target.value
+        this.props.setParam('filter', value)
     }
 
     render(){
@@ -46,8 +47,8 @@ class CustomerTable extends Component {
                                 <th>Company name</th>
                             </tr>
                             {
-                                this.props.data.map(customer => {
-                                    return(<tr><CustomerTableRow customer={customer} /></tr>)
+                                this.props.data.map((customer, i) => {
+                                    return(<tr key={i} ><CustomerTableRow customer={customer} /></tr>)
                                 })
                             }
                         </tbody>
