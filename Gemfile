@@ -38,6 +38,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
 end
 
 group :development do
