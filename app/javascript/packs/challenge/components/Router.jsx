@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-    BrowserRouter,
-    Route,
-} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 import App from './App';
 
 class Router extends PureComponent {
@@ -10,7 +7,7 @@ class Router extends PureComponent {
         return(
             <BrowserRouter>
                 <div>
-                    <Route exact path="/" component={App} />
+                    <Route path="/" component={App} />
                 </div>
             </BrowserRouter>
         )
