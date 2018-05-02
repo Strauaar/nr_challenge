@@ -54,7 +54,7 @@ class App extends Component {
                 <div className="content-container">
                     <CustomerSearch customer={this.state.query.customer} setParam={this.setParam}/>
                     <CompanyDropdown company={this.state.query.company} setParam={this.setParam} />
-                    <CustomerTable data={this.state.data} selected={this.state.query.filter} setParam={this.setParam} />
+                    <CustomerTable data={this.state.data} companySelected={Boolean(this.state.query.company)} selected={this.state.query.filter} setParam={this.setParam} />
                 </div>
             </div>
         )

@@ -4,7 +4,8 @@ import CustomerTableRow from './CustomerTableRow';
 
 class CustomerTable extends Component {
     static propTypes = {
-        setParam: PropTypes.func.isRequired
+        setParam: PropTypes.func.isRequired,
+        companySelected: PropTypes.bool
     }
 
     static defaultProps = {
@@ -33,8 +34,8 @@ class CustomerTable extends Component {
                             <option value="first_name,desc">First name, descending</option>
                             <option value="last_name,asc">Last name, ascending</option>
                             <option value="last_name,desc">Last name, descending</option>
-                            <option value="company,asc">Company name, ascending</option>
-                            <option value="company,desc">Company name, descending</option>
+                            <option disabled={this.props.companySelected ? true : false} value="company,asc">Company name, ascending</option>
+                            <option disabled={this.props.companySelected ? true : false} value="company,asc">Company name, descending</option>
                         </select>
                     </div>
                 </div>
