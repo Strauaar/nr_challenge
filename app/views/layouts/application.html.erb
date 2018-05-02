@@ -3,9 +3,8 @@
   <head>
     <title>Challenge</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'challenge/index' %>
+    <%= stylesheet_pack_tag 'challenge/assets/stylesheets/app' %>
   </head>
 
   <body>
