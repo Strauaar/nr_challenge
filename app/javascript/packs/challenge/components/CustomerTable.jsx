@@ -35,7 +35,7 @@ class CustomerTable extends Component {
                             <option value="last_name,asc">Last name, ascending</option>
                             <option value="last_name,desc">Last name, descending</option>
                             <option disabled={this.props.companySelected ? true : false} value="company,asc">Company name, ascending</option>
-                            <option disabled={this.props.companySelected ? true : false} value="company,asc">Company name, descending</option>
+                            <option disabled={this.props.companySelected ? true : false} value="company,desc">Company name, descending</option>
                         </select>
                     </div>
                 </div>
