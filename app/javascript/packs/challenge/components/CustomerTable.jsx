@@ -8,7 +8,7 @@ class CustomerTable extends Component {
 
     render(){
         return(
-            <div>
+            <div className="customer-table-container">
                 CustomerTable
             </div>
         )

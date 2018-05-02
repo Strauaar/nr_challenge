@@ -1,5 +1,13 @@
 @import './company-dropdown/index.scss';
+@import './customer-table/index.scss';
 
-.main-content {
-    
+.main-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .content-container {
+        max-width: 50%
+    }
 }

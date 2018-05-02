@@ -13,7 +13,9 @@ class CompanyDropdown extends Component {
 
     constructor(props){
         super(props)
-        this.state = { companies: [] }
+        this.toggleDropdown = this.toggleDropdown.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        this.state = { companies: [], displayDropdown: false }
     }
 
     componentDidMount(){
@@ -22,17 +24,32 @@ class CompanyDropdown extends Component {
             .catch(err => console.log(err))
     }
 
+    handleClick(company){
+        this.props.setCompany(company)
+        this.setState({displayDropdown: false})
+    }
+
+    toggleDropdown(){
+        this.setState({displayDropdown: !this.state.displayDropdown})
+    }
+
+    renderCompanyList(){
+        return !this.state.displayDropdown ? null : (<ul className="company-list">
+                                                        {
+                                                            this.state.companies.map(company => {
+                                                                return <li onClick={() => this.handleClick(company.name)} className="company-item">{company.name}</li>
+                                                            })
+                                                        }
+                                                    </ul>)
+    }
+
     render(){
         return(
             <div className="company-dropdown-container">
-                <div className="current-company">{this.props.currentCompany}</div>
-                <ul className="company-list">
-                    {
-                        this.state.companies.map(company => {
-                            return <li className="company-item">{company.name}</li>
-                        })
-                    }
-                </ul>
+                <div className="current-company" onClick={this.toggleDropdown} >{this.props.currentCompany}</div>
+                {
+                    this.renderCompanyList()
+                }
             </div>
         )
     }
