@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as CompanyApiUtil from '../utils/company_util';
+import * as Api from '../utils/api_util';
 import PropTypes from 'prop-types';
 
 class CompanyDropdown extends Component {
@@ -8,7 +8,7 @@ class CompanyDropdown extends Component {
     }
 
     static defaultProps = {
-        currentCompany: 'All companies'
+        company: 'All companies'
     }
 
     constructor(props){
@@ -19,7 +19,7 @@ class CompanyDropdown extends Component {
     }
 
     componentDidMount(){
-        CompanyApiUtil.fetchCompanies()
+        Api.fetchCompanies()
             .then(response => {this.setState({companies: response.data})})
             .catch(err => console.log(err))
     }
@@ -36,8 +36,8 @@ class CompanyDropdown extends Component {
     renderCompanyList(){
         return !this.state.displayDropdown ? null : (<ul className="company-list">
                                                         {
-                                                            this.state.companies.map(company => {
-                                                                return <li onClick={() => this.handleClick(company.name)} className="company-item">{company.name}</li>
+                                                            this.state.companies.map((company, idx) => {
+                                                                return <li key={idx} onClick={() => this.handleClick(company.name)} className="company-item">{company.name}</li>
                                                             })
                                                         }
                                                     </ul>)
@@ -46,7 +46,7 @@ class CompanyDropdown extends Component {
     render(){
         return(
             <div className="company-dropdown-container">
-                <div className="current-company" onClick={this.toggleDropdown} >{this.props.currentCompany}</div>
+                <div className="current-company" onClick={this.toggleDropdown} >{this.props.company}</div>
                 {
                     this.renderCompanyList()
                 }

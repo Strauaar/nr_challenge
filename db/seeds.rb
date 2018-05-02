@@ -9,11 +9,7 @@ end
 
 customer_ids = []
 400.times do
-    customer = Customer.create({ first_name: Faker::Name.first_name, last_name: Faker::Name.last_name })
+    customer = Customer.create({ first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, company_id: company_ids.sample })
     customer_ids << customer.id
-end
-
-400.times do 
-    CompanyCustomer.create({ company_id: company_ids.sample, customer_id: customer_ids.sample })
 end
 

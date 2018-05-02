@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import CustomerSearch from './CustomerSearch';
 import CompanyDropdown from './CompanyDropdown';
 import CustomerTable from './CustomerTable';
+import * as Api from '../utils/api_util';
 
 
 class App extends Component {
@@ -15,13 +16,17 @@ class App extends Component {
         history: PropTypes.object.isRequired
     }
     
-
     constructor(){
         super()
-        this.state = { currentCompany: 'All Companies' }
+        this.state = { data: [], query: { company: 'All Companies', filter: 'Select' } }
         this.setCustomer = this.setCustomer.bind(this);
         this.setCompany = this.setCompany.bind(this);
         this.setFilter = this.setFilter.bind(this);
+    }
+
+    componentDidMount(){
+        let query = qs.parse(location.search)
+        this.setState({query})
     }
 
     setCustomer(){
@@ -29,17 +34,34 @@ class App extends Component {
     }
 
     setCompany(company){
-        let newState = Object.assign({}, this.state, { currentCompany: company })
-        let query = '?' + qs.stringify(newState)
+        let newQuery = Object.assign({}, this.state.query, { company })
+        let queryString = '?' + qs.stringify(newQuery)
         this.props.history.push({
             pathname: '/',
-            search: query
+            search: queryString
         })
-        this.setState(newState)
+        this.setState({ query: newQuery })
+        Api.fetchCustomers(newQuery)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => console.log(err))
     }
 
-    setFilter(){
-
+    setFilter(filter){
+        let newQuery = Object.assign({}, this.state.query, { filter })
+        let queryString = '?' + qs.stringify(newQuery)
+        this.props.history.push({
+            pathname: '/',
+            search: queryString
+        })
+        this.setState({ query: newQuery })
+        Api.fetchCustomers(newQuery)
+            .then(response => {
+                console.log(response)
+                this.setState({data: response.data})
+            })
+            .catch(err => console.log(err))
     }
 
     render(){
@@ -47,8 +69,8 @@ class App extends Component {
             <div className="main-content-container">
                 <div className="content-container">
                     <CustomerSearch setCustomer={this.setCustomer}/>
-                    <CompanyDropdown currentCompany={this.state.currentCompany} setCompany={this.setCompany} />
-                    <CustomerTable setFilter={this.setFilter} />
+                    <CompanyDropdown company={this.state.query.company} setCompany={this.setCompany} />
+                    <CustomerTable data={this.state.data} selected={this.state.query.filter} setFilter={this.setFilter} />
                 </div>
             </div>
         )
