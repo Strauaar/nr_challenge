@@ -15,7 +15,7 @@ class CustomerTableRow extends Component {
             <React.Fragment>
                 <td>{this.props.customer.first_name}</td>
                 <td>{this.props.customer.last_name}</td>
-                <td></td>
+                <td>{this.props.customer.company}</td>
             </React.Fragment>
         )
     }

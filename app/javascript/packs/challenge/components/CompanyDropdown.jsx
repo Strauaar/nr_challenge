@@ -14,8 +14,8 @@ class CompanyDropdown extends Component {
     constructor(props){
         super(props)
         this.toggleDropdown = this.toggleDropdown.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.state = { companies: [], displayDropdown: false }
+        this.handleSelect = this.handleSelect.bind(this)
+        this.state = { companies: [] }
     }
 
     componentDidMount(){
@@ -24,9 +24,8 @@ class CompanyDropdown extends Component {
             .catch(err => console.log(err))
     }
 
-    handleClick(company){
-        this.props.setCompany(company)
-        this.setState({displayDropdown: false})
+    handleSelect(e){
+        this.props.setCompany(e.target.value)
     }
 
     toggleDropdown(){
@@ -34,22 +33,20 @@ class CompanyDropdown extends Component {
     }
 
     renderCompanyList(){
-        return !this.state.displayDropdown ? null : (<ul className="company-list">
-                                                        {
-                                                            this.state.companies.map((company, idx) => {
-                                                                return <li key={idx} onClick={() => this.handleClick(company.name)} className="company-item">{company.name}</li>
-                                                            })
-                                                        }
-                                                    </ul>)
+        return this.state.companies.map((company, idx) => {
+            return <option key={idx} value={company.name} className="company-item">{company.name}</option>
+        })
     }
 
     render(){
         return(
             <div className="company-dropdown-container">
-                <div className="current-company" onClick={this.toggleDropdown} >{this.props.company}</div>
-                {
-                    this.renderCompanyList()
-                }
+                <select onChange={this.handleSelect} value={this.props.company}>
+                    <option value='all'> All Companies </option>
+                    {
+                        this.renderCompanyList()
+                    }
+                </select>
             </div>
         )
     }

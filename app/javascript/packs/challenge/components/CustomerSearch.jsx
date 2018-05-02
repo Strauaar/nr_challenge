@@ -6,14 +6,23 @@ class CustomerSearch extends Component {
         setCustomer: PropTypes.func.isRequired
     }
 
+    static defaultProps = {
+        customer: ''
+    }
+
     constructor(props){
         super(props)
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(e){
+        this.props.setCustomer(e.currentTarget.value)
     }
 
     render(){
         return(
             <div className="customer-search-container">
-                <input type="text" />
+                <input type="text" value={this.props.customer} onChange={this.handleChange} />
             </div>
         )
     }
