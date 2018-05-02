@@ -5,6 +5,9 @@
     "@rails/webpacker": "3.5",
     "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-enzyme": "^6.0.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.0.0",
     "react": "^16.3.2",
@@ -15,6 +18,21 @@
     "webpack-cli": "^2.1.2"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.2",
+    "sinon": "^5.0.3",
     "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "roots": [
+      "app/javascript/packs",
+      "test/javascript"
+    ]
   }
 }
