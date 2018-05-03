@@ -20,11 +20,11 @@ export class App extends Component {
         super()
         this.state = { data: [], query: { company: undefined, filter: undefined, customer: undefined } }
         this.setParam = this.setParam.bind(this);
+        this.setUrl = this.setUrl.bind(this);
         this.fetchCustomers = this.fetchCustomers.bind(this);
     }
 
     componentDidMount(){
-        console.log(location.search)
         let query = location.search === '' ? this.state.query : qs.parse(location.search)
         this.setState({query})
         this.fetchCustomers(query)
@@ -32,13 +32,17 @@ export class App extends Component {
 
     setParam(field, data){
         let newQuery = Object.assign({}, this.state.query, { [field]: data })
-        let queryString = '?' + qs.stringify(newQuery)
+        this.setUrl(newQuery)
+        this.setState({ query: newQuery })
+        this.fetchCustomers(newQuery)        
+    }
+
+    setUrl(query){
+        let queryString = '?' + qs.stringify(query)
         this.props.history.push({
             pathname: '/',
             search: queryString
         })
-        this.setState({ query: newQuery })
-        this.fetchCustomers(newQuery)        
     }
 
     fetchCustomers(query){
