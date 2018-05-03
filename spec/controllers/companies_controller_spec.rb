@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::CompaniesController do
-    FactoryBot.define do
-        factory :company
-    end
     describe "GET index" do
       it "assigns @companies" do
         company1 = FactoryBot.create(:company, name: "company1")
