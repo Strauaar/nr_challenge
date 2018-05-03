@@ -23,6 +23,8 @@ Navigate to localhost:3000 to test out the application!
 
 ## Backend
 
+### System dependencies
+
 - rspec-rails(3.7.2) 
 - factory_bot(4.8.2)
 
@@ -33,6 +35,8 @@ To run:
 Test files can be found in the [spec](https://github.com/Strauaar/nr_challenge/tree/master/spec) folder
 
 ## Frontend 
+
+### System dependencies
 
 - jest(22.4.3)
 - axios-mock-adapter(1.15.0)
