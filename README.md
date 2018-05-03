@@ -35,3 +35,23 @@ To run:
     yarn test
 
 Test files can be found in the [app/javascript/packs/challenge_tests/components](https://github.com/Strauaar/nr_challenge/tree/master/app/javascript/packs/challenge_tests/components) folder
+
+# Code
+
+## Backend 
+
+Main functionality:
+
+- Controllers: 
+    - [customers_controller.rb](https://github.com/Strauaar/nr_challenge/blob/master/app/controllers/api/customers_controller.rb)
+    - [companies_controller.rb](https://github.com/Strauaar/nr_challenge/blob/master/app/controllers/api/companies_controller.rb)
+
+- Models:
+    - [customer.rb](https://github.com/Strauaar/nr_challenge/blob/master/app/models/customer.rb)
+    - [company.rb](https://github.com/Strauaar/nr_challenge/blob/master/app/models/company.rb)
+
+## Frontend 
+
+Main functionality: 
+
+- [Components](https://github.com/Strauaar/nr_challenge/blob/master/app/javascript/packs/challenge/components)
