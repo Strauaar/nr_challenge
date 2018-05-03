@@ -33,7 +33,6 @@ describe('CustomerTable Component', ()=> {
         ]
         const wrapper = mount(<CustomerTable data={[]} setParam={setParam} />)        
         wrapper.setProps({ data });
-        expect(wrapper.props().data.length).toBe(3)
-
+        expect(wrapper.find(CustomerTableRow).length).toEqual(3);
     })
 })
