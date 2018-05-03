@@ -1,24 +1,37 @@
-# README
+# Goal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create a full stack application that allows you to filter a list of customers in three ways:
 
-Things you may want to cover:
+  1. Filter by a customer's name via text input field
 
-* Ruby version
+  2. Filter by a customer's company name via select dropdown
 
-* System dependencies
+  3. Sort by a customer's first name, last name, or company name with both ascending and descending order
 
-* Configuration
+# Setup
 
-* Database creation
+    git clone https://github.com/Strauaar/nr_challenge.git
+    cd nr_challenge
+    bundle install
+    yarn install
+    rails s
 
-* Database initialization
+Navigate to localhost:3000 to test out the application!
 
-* How to run the test suite
+# Testing
 
-* Services (job queues, cache servers, search engines, etc.)
+## Backend
 
-* Deployment instructions
+To run:
 
-* ...
+    bundle exec rspec
+
+Test files can be found in the [spec](https://github.com/Strauaar/nr_challenge/tree/master/spec) folder
+
+## Frontend 
+
+To run: 
+
+    yarn test
+
+Test files can be found in the [app/javascript/packs/challenge_tests/components](https://github.com/Strauaar/nr_challenge/tree/master/app/javascript/packs/challenge_tests/components) folder

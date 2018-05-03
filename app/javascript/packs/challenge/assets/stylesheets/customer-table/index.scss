@@ -1,3 +1,31 @@
 .customer-table-container {
+    height: 80%;
+    border: 1px solid #ccc;
+    padding: 10px;
 
+    .table-head {
+        position: relative;
+        display: flex;
+        justify-content: flex-end
+
+    }
+
+    .table-container {
+        height: 97%;
+        overflow-y: scroll;
+
+        table{
+            width: 100%;
+
+            tbody{
+                table-layout: fixed;
+                tr{
+                    td {
+                        
+                    }
+                }
+            }
+        }
+    }
 }
+

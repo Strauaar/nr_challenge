@@ -23,7 +23,7 @@ class CustomerSearch extends Component {
     render(){
         return(
             <div className="customer-search-container">
-                <input type="text" value={this.props.customer} onChange={this.handleChange} />
+                <input type="text" value={this.props.customer} onChange={this.handleChange} placeholder="Customer Name" />
             </div>
         )
     }
