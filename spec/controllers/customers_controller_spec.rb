@@ -13,4 +13,4 @@ RSpec.describe Api::CustomersController do
         expect(response).to render_template("index.json.jbuilder")
       end
     end
-  end
+end
