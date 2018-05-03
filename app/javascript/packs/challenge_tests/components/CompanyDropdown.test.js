@@ -1,15 +1,22 @@
 import React from 'react';
 import CompanyDropdown from '../../challenge/components/CompanyDropdown';
 import * as Api from '../../challenge/utils/api_util';
-import { mount, configure } from 'enzyme';
+import { mount, shallow, configure } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 configure({ adapter: new Adapter() });
-describe('CompanyDropdown Component', () => {
+const mock = new MockAdapter(axios);
+mock.onGet('/api/companies').reply(200, {
+    data: [{id: 1, name: "Company"}]
+});
 
+describe('CompanyDropdown Component', () => {
     test('updates company props', () => {
-        let setParam = () => {}
+        let setParam = jest.fn()
+        CompanyDropdown.prototype.setState = jest.fn()
         const wrapper = mount(<CompanyDropdown setParam={setParam}/>);
         wrapper.setProps({ company: 'new company' });
         expect(wrapper.props().company).toEqual('new company')
@@ -19,7 +26,7 @@ describe('CompanyDropdown Component', () => {
         let setParam = () => {}
         const handleChangeSpy = sinon.spy(CompanyDropdown.prototype, "handleSelect");
         const event = {target: { value: "Another Company" }};
-        const wrapper = mount(<CompanyDropdown setParam={setParam} />)
+        const wrapper = shallow(<CompanyDropdown setParam={setParam} />)
         wrapper.find('select').simulate('change', event);
         expect(handleChangeSpy.calledOnce).toEqual(true);
     })
@@ -27,7 +34,7 @@ describe('CompanyDropdown Component', () => {
     test('calls Api.fetchCompanies() on componentDidMount', () => {
         let setParam = () => {}
         const handleChangeSpy = sinon.spy(Api, "fetchCompanies");
-        const wrapper = mount(<CompanyDropdown setParam={setParam} />)
+        const wrapper = shallow(<CompanyDropdown setParam={setParam} />)
         expect(handleChangeSpy.calledOnce).toEqual(true);
     })
 })

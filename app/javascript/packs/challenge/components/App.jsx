@@ -11,9 +11,9 @@ import * as Api from '../utils/api_util';
 export class App extends Component {
     
     static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+        match: PropTypes.object,
+        location: PropTypes.object,
+        history: PropTypes.object
     }
     
     constructor(){

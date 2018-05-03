@@ -5,14 +5,20 @@ import { StaticRouter, withRouter } from 'react-router-dom';
 import { mount, configure, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 configure({ adapter: new Adapter() });
+const mock = new MockAdapter(axios);
+mock.onGet('/api/customers').reply(200, {
+    customers: []
+});
 
 describe('App Component', () => {
     describe('componentDidMount', () => {
         test('calls fetchCustomers()', () => {
             const handleChangeSpy = sinon.spy(AppWithoutRouter.prototype, "fetchCustomers");
-            const wrapper = mount(<AppWithoutRouter />)
+            const wrapper = shallow(<AppWithoutRouter />)
             expect(handleChangeSpy.calledOnce).toEqual(true);
             AppWithoutRouter.prototype.fetchCustomers.restore()
         })
@@ -20,7 +26,7 @@ describe('App Component', () => {
         test('if no query string, set default state and fetch default customers', () => {
             const handleChangeSpy = sinon.spy(AppWithoutRouter.prototype, "fetchCustomers");
             let query = {filter: undefined, company: undefined, customer: undefined}
-            const wrapper = mount(<AppWithoutRouter />)
+            const wrapper = shallow(<AppWithoutRouter />)
             expect(wrapper.state().query).toEqual(query);
             expect(handleChangeSpy.calledWith(query)).toEqual(true);
             AppWithoutRouter.prototype.fetchCustomers.restore()            
