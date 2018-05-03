@@ -13,9 +13,9 @@ class CustomerTableRow extends Component {
     render(){
         return(
             <React.Fragment>
-                <td>{this.props.customer.first_name}</td>
-                <td>{this.props.customer.last_name}</td>
-                <td>{this.props.customer.company}</td>
+                <td className="customer-firstname">{this.props.customer.first_name}</td>
+                <td className="customer-lastname">{this.props.customer.last_name}</td>
+                <td className="company-name">{this.props.customer.company}</td>
             </React.Fragment>
         )
     }
