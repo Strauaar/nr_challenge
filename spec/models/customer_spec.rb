@@ -2,12 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Customer do
     FactoryBot.define do
-        factory :company do
-        end
-    end
-    FactoryBot.define do
-        factory :customer do
-        end
+        factory :company
+        factory :customer
     end
   it "is not valid without a first_name" do
     subject { described_class.new(last_name: 'lname', company_id: 1) }
