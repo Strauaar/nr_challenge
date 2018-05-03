@@ -18,6 +18,8 @@ export class App extends Component {
     
     constructor(){
         super()
+        //Sets default query for all parameters and a default empty data set
+        //Note: undefined is default so that query-strings ignores the parameter when converting the object to a query-string for the URL
         this.state = { data: [], query: { company: undefined, filter: undefined, customer: undefined } }
         this.setParam = this.setParam.bind(this);
         this.setUrl = this.setUrl.bind(this);
@@ -25,11 +27,15 @@ export class App extends Component {
     }
 
     componentDidMount(){
+        //When accessing or refreshing the page with a query string set, this lifecycle method will update state based on that query string
+        //(this is where the persistance between pages happens with a set query string) 
         let query = location.search === '' ? this.state.query : qs.parse(location.search)
         this.setState({query})
         this.fetchCustomers(query)
     }
 
+    //passed to child components that allow for parameter changes
+    //this will cause the app to fetch data every time a parameter is changed
     setParam(field, data){
         let newQuery = Object.assign({}, this.state.query, { [field]: data })
         this.setUrl(newQuery)
@@ -37,6 +43,7 @@ export class App extends Component {
         this.fetchCustomers(newQuery)        
     }
 
+    //setUrl will be called on every parameter change to reflect changes in the URL
     setUrl(query){
         let queryString = '?' + qs.stringify(query)
         this.props.history.push({
@@ -45,6 +52,7 @@ export class App extends Component {
         })
     }
 
+    //wrapper function that gets customers from the backend and sets the app state with response data
     fetchCustomers(query){
         Api.fetchCustomers(query)
             .then(response => {

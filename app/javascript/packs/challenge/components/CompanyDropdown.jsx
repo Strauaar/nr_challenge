@@ -18,12 +18,15 @@ class CompanyDropdown extends Component {
     }
 
     componentDidMount(){
+        //fetches all companies once the component mounts and sets state to allow display of companies in dropdown
         Api.fetchCompanies()
             .then(response => {this.setState({companies: response.data})})
             .catch(err => console.log(err))
     }
 
     handleSelect(e){
+        //if the default value is selected, will return undefined so as to not affect the query string in the URL
+        //calls setParam which will update App component state and fetch data with params applied
         let value = e.target.value === 'all' ? undefined : e.target.value
         this.props.setParam('company', value)
     }

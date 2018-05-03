@@ -19,6 +19,8 @@ class CustomerTable extends Component {
     }
 
     handleSelect(e){
+        //if the default value is selected, will return undefined so as to not affect the query string in the URL
+        //calls setParam which will update App component state and fetch data with params applied
         let value = e.target.value === 'default'  ? undefined : e.target.value
         this.props.setParam('filter', value)
     }
@@ -26,7 +28,9 @@ class CustomerTable extends Component {
     render(){
         return(
             <div className="customer-table-container">
+
                 <div className="table-head">
+                {/* Filter for sorting */}
                     <div className="filter-container">
                         <select onChange={this.handleSelect} value={this.props.selected}>
                             <option value="default">Select</option>
@@ -39,6 +43,7 @@ class CustomerTable extends Component {
                         </select>
                     </div>
                 </div>
+        
                 <div className="table-container">
                     <table>
                         <tbody>
@@ -55,6 +60,7 @@ class CustomerTable extends Component {
                         </tbody>
                     </table>
                 </div>
+                
             </div>
         )
     }

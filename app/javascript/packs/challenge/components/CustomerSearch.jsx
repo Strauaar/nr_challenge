@@ -16,6 +16,8 @@ class CustomerSearch extends Component {
     }
 
     handleChange(e){
+        //if the default value is selected, will return undefined so as to not affect the query string in the URL
+        //calls setParam which will update App component state and fetch data with params applied
         let value = e.currentTarget.value === '' ? undefined : e.currentTarget.value
         this.props.setParam('customer', value)
     }
