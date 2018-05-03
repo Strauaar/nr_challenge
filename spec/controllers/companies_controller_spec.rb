@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Api::CompaniesController do
     FactoryBot.define do
         factory :company
-        factory :customer
     end
     describe "GET index" do
       it "assigns @companies" do
