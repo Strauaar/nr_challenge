@@ -44,6 +44,16 @@ To run:
 
 Test files can be found in the [app/javascript/packs/challenge_tests/components](https://github.com/Strauaar/nr_challenge/tree/master/app/javascript/packs/challenge_tests/components) folder
 
+Config:
+
+    //package.json
+    "jest": {
+        "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+        "roots": [
+            "app/javascript/packs"
+        ]
+    }
+
 # Code
 
 ## Backend 

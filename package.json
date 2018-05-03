@@ -33,7 +33,6 @@
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "roots": [
       "app/javascript/packs"
-    ],
-    "testURL": "http://localhost:3000"
+    ]
   }
 }
