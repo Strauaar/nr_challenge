@@ -1,6 +1,13 @@
 .company-dropdown-container {
     position: relative;
     width: 100%;
+    margin-top: 15px;
+
+    select{
+        border: 0;
+        font: 22px sans-serif;
+        background-color: white;
+    }
 
     .current-company{
         border: 1px solid #ccc;
