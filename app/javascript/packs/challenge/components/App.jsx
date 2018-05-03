@@ -8,7 +8,7 @@ import CustomerTable from './CustomerTable';
 import * as Api from '../utils/api_util';
 
 
-class App extends Component {
+export class App extends Component {
     
     static propTypes = {
         match: PropTypes.object.isRequired,
@@ -24,6 +24,7 @@ class App extends Component {
     }
 
     componentDidMount(){
+        console.log(location.search)
         let query = location.search === '' ? this.state.query : qs.parse(location.search)
         this.setState({query})
         this.fetchCustomers(query)
