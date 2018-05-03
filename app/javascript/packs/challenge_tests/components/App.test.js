@@ -32,15 +32,6 @@ describe('App Component', () => {
             expect(handleChangeSpy.calledWith(query)).toEqual(true);
             AppWithoutRouter.prototype.fetchCustomers.restore()            
         })
-
-        test('Should set pathname url to testURL', () => {
-            // Here I set href to my needs, opinionated stuff bellow
-            // global.window = new jsdom.JSDOM('', {
-            //     url: 'http://localhost:3000/?foo=1&bar=2&fizz=3'
-            // }).window;
-            jsdom.changeURL(window, 'http://localhost:3000/bar')
-            console.log(window.location);
-        });
     })
 
     describe('calling setParams', () => {
