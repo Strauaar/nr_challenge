@@ -20,7 +20,7 @@ export class App extends Component {
         super()
         //Sets default query for all parameters and a default empty data set
         //Note: undefined is default so that query-strings ignores the parameter when converting the object to a query-string for the URL
-        this.state = { data: [], query: { company: undefined, filter: undefined, customer: undefined } }
+        this.state = { data: [], query: { company: undefined, filter: undefined, customer: undefined }, error: false }
         this.setParam = this.setParam.bind(this);
         this.setUrl = this.setUrl.bind(this);
         this.fetchCustomers = this.fetchCustomers.bind(this);
@@ -56,9 +56,11 @@ export class App extends Component {
     fetchCustomers(query){
         Api.fetchCustomers(query)
             .then(response => {
-                this.setState({data: response.data})                
+                this.setState({data: response.data, error: false})                
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.setState({error: true})
+            })
     }
 
     render(){
@@ -67,7 +69,7 @@ export class App extends Component {
                 <div className="content-container">
                     <CustomerSearch customer={this.state.query.customer} setParam={this.setParam}/>
                     <CompanyDropdown company={this.state.query.company} setParam={this.setParam} />
-                    <CustomerTable data={this.state.data} companySelected={Boolean(this.state.query.company)} selected={this.state.query.filter} setParam={this.setParam} />
+                    <CustomerTable error={this.state.error} data={this.state.data} companySelected={Boolean(this.state.query.company)} selected={this.state.query.filter} setParam={this.setParam} />
                 </div>
             </div>
         )

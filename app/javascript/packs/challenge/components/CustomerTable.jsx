@@ -25,6 +25,13 @@ class CustomerTable extends Component {
         this.props.setParam('filter', value)
     }
 
+    renderError(){
+        return(<div className="error-message">
+                <h1>No customers</h1>
+            </div>
+        )
+    }
+
     render(){
         return(
             <div className="customer-table-container">
@@ -45,20 +52,22 @@ class CustomerTable extends Component {
                 </div>
         
                 <div className="table-container">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Company name</th>
-                            </tr>
-                            {
-                                this.props.data.map((customer, i) => {
-                                    return(<tr key={i} ><CustomerTableRow customer={customer} /></tr>)
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        this.props.error ? this.renderError() : (<table>
+                            <tbody>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Company name</th>
+                                </tr>
+                                {
+                                    this.props.data.map((customer, i) => {
+                                        return(<tr key={i} ><CustomerTableRow customer={customer} /></tr>)
+                                    })
+                                }
+                            </tbody>
+                        </table>)
+                    }
                 </div>
                 
             </div>
