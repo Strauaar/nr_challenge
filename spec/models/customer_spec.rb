@@ -45,6 +45,39 @@ RSpec.describe Customer do
         end
     end
 
+    context "if filter is specified" do
+        context "filter by first_name, ascending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("first_name,asc")).to eq([@ac, @bb, @ca])
+            end
+        end
+        context "filter by first_name, descending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("first_name,desc")).to eq([@ca, @bb, @ac])
+            end
+        end
+        context "filter by last_name, ascending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("last_name,asc")).to eq([@ca, @bb, @ac])
+            end
+        end
+        context "filter by last_name, descending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("last_name,desc")).to eq([@ac, @bb, @ca])
+            end
+        end
+        context "filter by company_name, ascending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("company,asc")).to eq([@ac, @bb, @ca])
+            end
+        end
+        context "filter by company_name, descending" do 
+            it "returns a sorted array of results that match" do
+                expect(Customer.sort_by("company,desc")).to eq([@ca, @bb, @ac])
+            end
+        end
+    end
+
   end
 
 end
