@@ -57,6 +57,31 @@ Config:
             "app/javascript/packs"
         ]
     }
+<hr/>
+
+    //.babelrc
+    {   
+        ...
+        "env": {
+            "test": {
+                "presets": [
+                    ["env"], 
+                    "react"
+                ],
+                "plugins": [
+                    "syntax-dynamic-import",
+                    "transform-object-rest-spread",
+                    [
+                        "transform-class-properties",
+                        {
+                        "spec": true
+                        }
+                    ]
+                ]
+            }
+        }
+        ...
+    }
 
 # Code
 
