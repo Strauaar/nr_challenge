@@ -14,6 +14,9 @@ Create a full stack application that allows you to filter a list of customers in
     cd nr_challenge
     bundle install
     yarn install
+    rails db:create
+    rails db:migrate
+    rails db:seed
     rails s
 
 Navigate to localhost:3000 to test out the application!

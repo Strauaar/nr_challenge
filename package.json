@@ -34,6 +34,7 @@
     "roots": [
       "app/javascript/packs",
       "test/javascript"
-    ]
+    ],
+    "testURL": "http://localhost:3000"
   }
 }
