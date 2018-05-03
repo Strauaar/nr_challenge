@@ -5,5 +5,6 @@ class Api::CustomersController < ApplicationController
         @customers = Customer.filter_by_company(@customers, params['company']) if params['company']
         @customers = Customer.sort_by(@customers, params['filter']) if params['filter']
         @customers = @customers.take(50)
+        render 'index.json.jbuilder'
     end
 end
